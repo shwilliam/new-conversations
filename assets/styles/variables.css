@@ -1,0 +1,5 @@
+:root {
+  --lineHeight: 1.5rem;
+  --spacing: 2rem;
+  --spacingv: calc(var(--lineHeight) / 2);
+}
