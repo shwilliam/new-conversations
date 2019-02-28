@@ -1,11 +1,12 @@
 <template>
   <main>
-    <h2>login</h2>
     <form @submit.prevent="logIn">
-      <label>Email:
+      <label>
+        e-mail
         <input v-model="emailInput" type="email" placeholder="" name="email" required>
       </label>
-      <label>Password:
+      <label>
+        password
         <input v-model="passwordInput" type="password" placeholder="" name="password" required>
       </label>
       <button type="submit">

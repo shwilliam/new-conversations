@@ -1,8 +1,10 @@
 <template>
   <main>
     <ul>
-      <li v-for="conversation in conversations" :key="conversation.id">
-        {{ formatConversationLabel(conversation) }}
+      <li v-for="conversation in conversations" :key="Object.keys(conversation)[0]">
+        <nuxt-link :to="`/conversation/${Object.keys(conversation)[0]}`">
+          {{ formatConversationLabel(conversation) }}
+        </nuxt-link>
       </li>
     </ul>
   </main>
@@ -27,7 +29,7 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            conversations.push(doc.data())
+            conversations.push({ [doc.id]: doc.data() })
           })
           resolve(conversations)
         })
@@ -42,8 +44,8 @@ export default {
         .collection('users')
         .onSnapshot((snapshot) => {
           snapshot.forEach((user) => {
-            const { id, nickname } = user.data()
-            users[id] = nickname
+            const { id, name } = user.data()
+            users[id] = name
           })
           resolve(users)
         })
@@ -56,8 +58,14 @@ export default {
   },
   methods: {
     formatConversationLabel(conversation) {
-      return conversation[Object.keys(conversation)[0]].id.split('_').map(id => this.users[id]).join(' & ')
+      return Object.keys(conversation)[0].split('_').map(id => this.users[id]).join(' & ')
     }
   }
 }
 </script>
+
+<style scoped>
+li {
+  margin-bottom: var(--spacingv);
+}
+</style>

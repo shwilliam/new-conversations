@@ -5,7 +5,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  signUp(state, { nickname, email, password, callback }) {
+  signUp(state, { name, email, password, callback }) {
     auth.createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
         state.user = user
@@ -14,7 +14,8 @@ export const mutations = {
           .doc(user.uid)
           .set({
             id: user.uid,
-            nickname
+            email,
+            name
           })
           .catch((error) => {
             console.error(error.code, error.message) // eslint-disable-line
@@ -49,22 +50,38 @@ export const mutations = {
   },
   uploadImage(state, { image, otherUserID, callback }) {
     const storageRef = storage.ref()
-    const newImageRef = storageRef.child(`${state.user.uid}_${otherUserID}-${new Date().valueOf()}.jpg`)
+    const userIDs = [state.user.uid, otherUserID].sort()
+    const conversationID = `${userIDs[0]}_${userIDs[1]}`
+    const timestamp = new Date().valueOf()
+    const newImageRef = storageRef.child(`${conversationID}-${timestamp}.jpg`)
 
     const docRef = firestore
       .collection('conversations')
-      .doc(`${state.user.uid}_${otherUserID}`)
+      .doc(conversationID)
 
     newImageRef.put(image).then((snapshot) => {
       newImageRef.getDownloadURL().then((url) => {
         docRef.update({
-          [new Date().valueOf()]: {
+          [timestamp]: {
             imageURL: url,
-            id: docRef.id
+            author: state.user.uid,
+            users: [state.user.uid, otherUserID],
+            conversationID
           }
         })
-          .catch((error) => {
-            console.error(error.code, error.message) // eslint-disable-line
+          .catch(() => {
+            // document likely does not exist
+            docRef.set({
+              [timestamp]: {
+                imageURL: url,
+                author: state.user.uid,
+                users: [state.user.uid, otherUserID],
+                conversationID
+              }
+            })
+              .catch((error) => {
+              console.error(error.code, error.message) // eslint-disable-line
+              })
           })
           .finally(() => {
             callback()

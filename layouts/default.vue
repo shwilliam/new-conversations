@@ -2,24 +2,24 @@
   <div id="app">
     <TopHeader />
     <nuxt />
-    <BottomFooter />
   </div>
 </template>
 
 <script>
 import TopHeader from '../components/TopHeader.vue'
-import BottomFooter from '../components/BottomFooter.vue'
 
 export default {
   components: {
-    TopHeader,
-    BottomFooter
+    TopHeader
   }
 }
 </script>
 
 <style>
-#App {
+#app {
   margin: var(--spacing);
+}
+main {
+  margin-top: calc(4.5 * var(--spacing));
 }
 </style>

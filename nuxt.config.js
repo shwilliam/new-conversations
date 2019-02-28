@@ -22,7 +22,8 @@ module.exports = {
     './assets/styles/reset.css',
     './assets/styles/variables.css',
     './assets/styles/utilities.css',
-    './assets/styles/fonts.css'
+    './assets/styles/fonts.css',
+    './assets/styles/global.css'
   ],
 
   plugins: [

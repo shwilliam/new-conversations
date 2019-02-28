@@ -5,7 +5,7 @@
         new conversations
       </nuxt-link>
     </h1>
-    <nav>
+    <nav class="z">
       <ul>
         <li v-if="isLoggedIn">
           <nuxt-link to="/new">
@@ -60,19 +60,33 @@ export default {
 
 <style scoped>
 header {
-  margin: var(--spacing) 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: calc(1.5 * var(--spacing)) 0 var(--spacing) 0;
 }
-header, ul {
+header {
   display: -webkit-flex;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
-  overflow-x: visible;
 }
 h1 {
-  padding: var(--spacingv) 0;
+  padding: var(--spacingv) var(--spacing);
+}
+ul {
+  white-space: nowrap;
+  margin-right: var(--spacing);
 }
 li {
   padding: var(--spacingv);
+}
+@media (min-width: 340px) {
+  ul {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 </style>

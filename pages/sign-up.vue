@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <h2>sign up</h2>
+  <main>
     <form @submit.prevent="signUp">
-      <label>Nickname:
-        <input v-model="nicknameInput" type="text" placeholder="" name="nickname" required>
+      <label>
+        full name
+        <input v-model="nameInput" type="text" placeholder="" name="name" required>
       </label>
-      <label>Email:
+      <label>
+        e-mail
         <input v-model="emailInput" type="email" placeholder="" name="email" required>
       </label>
-      <label>Password:
+      <label>
+        password
         <input v-model="passwordInput" type="password" placeholder="" name="password" required>
       </label>
-      <label>Confirm password:
+      <label>
+        confirm password
         <input v-model="passwordConfirmInput" type="password" placeholder="" name="passwordConfirm" required>
       </label>
       <button type="submit">
         sign up
       </button>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -26,7 +29,7 @@ export default {
   name: 'SignUp',
   data() {
     return {
-      nicknameInput: '',
+      nameInput: '',
       emailInput: '',
       passwordInput: '',
       passwordConfirmInput: ''
@@ -41,7 +44,7 @@ export default {
     signUp() {
       if (this.passwordsMatch) {
         this.$store.commit('signUp', {
-          nickname: this.nicknameInput,
+          name: this.nameInput,
           email: this.emailInput,
           password: this.passwordInput,
           callback: () => this.$router.push({

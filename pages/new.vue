@@ -1,8 +1,8 @@
 <template>
   <main>
-    <h2>new</h2>
     <form @submit.prevent="uploadFile">
-      <label>Image:
+      <label>
+        image
         <input
           id="image-upload"
           type="file"
@@ -12,11 +12,12 @@
           @change="selectFile"
         >
       </label>
-      <label>To:
+      <label>
+        conversation
         <select v-model="otherUserID" name="otherUserID" required>
           <option disabled value="">Select a user</option>
           <option v-for="user in users" :key="user.id" :value="user.id">
-            {{ user.nickname }}
+            {{ user.name }}
           </option>
         </select>
       </label>
@@ -55,9 +56,9 @@ export default {
       .collection('users')
       .onSnapshot((snapshot) => {
         snapshot.forEach((user) => {
-          const { id, nickname } = user.data()
+          const { id, name, email } = user.data()
 
-          if (id !== store.state.user.uid) users.push({ id, nickname })
+          if (id !== store.state.user.uid) users.push({ id, name, email })
         })
       })
     return { users }

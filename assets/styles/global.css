@@ -1,0 +1,16 @@
+form {
+  margin: 0 auto;
+  width: 300px;
+}
+input, select, button {
+  margin-bottom: var(--spacingv);
+  display: block;
+  font: inherit;
+  padding: 4px 8px;
+}
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
