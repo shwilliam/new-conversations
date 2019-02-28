@@ -20,6 +20,6 @@ export default {
   margin: var(--spacing);
 }
 main {
-  margin-top: calc(4.5 * var(--spacing));
+  margin-top: calc(5 * var(--spacing));
 }
 </style>

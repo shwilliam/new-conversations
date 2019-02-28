@@ -65,27 +65,32 @@ header {
   left: 0;
   right: 0;
   margin: calc(1.5 * var(--spacing)) 0 var(--spacing) 0;
+  line-height: 22px;
 }
 header {
+  white-space: nowrap;
+}
+ul {
   display: -webkit-flex;
   display: flex;
-  justify-content: space-between;
+  margin: 0 var(--spacing) 0 calc(var(--spacing) - var(--spacingv));
   white-space: nowrap;
 }
 h1 {
-  padding: var(--spacingv) var(--spacing);
-}
-ul {
-  white-space: nowrap;
-  margin-right: var(--spacing);
+  padding: var(--spacingv) var(--spacing) 0 var(--spacing);
 }
 li {
   padding: var(--spacingv);
 }
-@media (min-width: 340px) {
-  ul {
+@media (min-width: 370px) {
+  header {
     display: -webkit-flex;
     display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+  }
+  ul {
+    margin: 0 var(--spacing) 0 0;
     justify-content: space-between;
   }
 }

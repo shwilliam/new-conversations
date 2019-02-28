@@ -4,8 +4,8 @@
       <li v-for="image in images" :key="image.imageURL">
         <img :src="image.imageURL" alt="">
         <div>
-          <p>{{ image.timestamp | formatTimestamp }}</p>
-          <p>{{ users[image.author] | initials }}</p>
+          {{ users[image.author] | initials }}
+          <small>{{ image.timestamp | formatTimestamp }}</small>
         </div>
       </li>
     </ul>
@@ -91,5 +91,9 @@ li {
 }
 img {
   height: 300px;
+  min-width: 100px;
+}
+small {
+  margin-left: var(--spacingv);
 }
 </style>

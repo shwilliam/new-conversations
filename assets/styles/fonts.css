@@ -13,3 +13,14 @@ html {
     font-family: 'Inter var', sans-serif;
   }
 }
+h1 {
+  font-size: 18px;
+  letter-spacing: -0.014em;
+  line-height: 25px;
+  font-weight: 600;
+}
+small {
+  font-size: 12px;
+  letter-spacing: 0em;
+  line-height: 17px;
+}

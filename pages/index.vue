@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     formatConversationLabel(conversation) {
-      return Object.keys(conversation)[0].split('_').map(id => this.users[id]).join(' & ')
+      return Object.keys(conversation)[0].split('_').map(id => this.users[id]).join(' and ')
     }
   }
 }
@@ -66,6 +66,6 @@ export default {
 
 <style scoped>
 li {
-  margin-bottom: var(--spacingv);
+  padding: var(--spacingv) 0;
 }
 </style>
