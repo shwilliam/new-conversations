@@ -4,7 +4,7 @@ import 'firebase/firestore'
 import 'firebase/storage'
 
 const config = {
-  apiKey: 'AIzaSyDtW9mqo_iwWOlVuk9KVxkuM_5T3ESmBY8',
+  apiKey: process.env.API_KEY,
   authDomain: 'new-conversations.firebaseapp.com',
   databaseURL: 'https://new-conversations.firebaseio.com',
   projectId: 'new-conversations',
